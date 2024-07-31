@@ -101,3 +101,4 @@ D:\SoftUni\Front-End\Selenium-GitHubActions\13.Workshop-CI-System-with-Selenium-
 D:\SoftUni\Front-End\Selenium-GitHubActions\13.Workshop-CI-System-with-Selenium-Appium-Tests-I-Resources\2-SeleniumIDE\SeleniumIDE\obj\Debug\net6.0\SeleniumIde.pdb
 D:\SoftUni\Front-End\Selenium-GitHubActions\13.Workshop-CI-System-with-Selenium-Appium-Tests-I-Resources\2-SeleniumIDE\SeleniumIDE\obj\Debug\net6.0\SeleniumIde.genruntimeconfig.cache
 D:\SoftUni\Front-End\Selenium-GitHubActions\13.Workshop-CI-System-with-Selenium-Appium-Tests-I-Resources\2-SeleniumIDE\SeleniumIDE\obj\Debug\net6.0\ref\SeleniumIde.dll
+D:\SoftUni\Front-End\Selenium-GitHubActions\13.Workshop-CI-System-with-Selenium-Appium-Tests-I-Resources\2-SeleniumIDE\SeleniumIDE\obj\Debug\net6.0\SeleniumIde.sourcelink.json
