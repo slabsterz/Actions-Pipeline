@@ -21,7 +21,7 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Install Chrome
+      - name: Install Google Chrome
         run: |
           sudo apt-get update
           sudo apt-get install -y wget
@@ -30,14 +30,15 @@ jobs:
 
       - name: Install ChromeDriver
         run: |
-          CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+          # Determine the version of Chrome installed
+          CHROME_VERSION=$(google-chrome --version | awk '{print $3}')
+          # Fetch the compatible ChromeDriver version
+          CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%.*})
+          # Download and install ChromeDriver
           wget https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
-
-      - name: Set up Selenium Manager permissions
-        run: chmod +x ./SeleniumIDE/bin/Debug/net6.0/selenium-manager/linux/selenium-manager
 
       - name: Install dependencies
         run: dotnet restore
