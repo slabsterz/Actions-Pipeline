@@ -13,26 +13,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '6.0.x'
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
 
-    - name: Install Chrome
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
-    - name: Install dependencies
-      run: dotnet restore
+      - name: Install ChromeDriver
+        run: |
+          CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+          wget https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/chromedriver
+          sudo chmod +x /usr/local/bin/chromedriver
 
-    - name: Build
-      run: dotnet build --no-restore
+      - name: Set up Selenium Manager permissions
+        run: chmod +x ./SeleniumIDE/bin/Debug/net6.0/selenium-manager/linux/selenium-manager
 
-    - name: Run tests
-      env:
-        CHROMEWEBDRIVER: /usr/bin/google-chrome
-      run: dotnet test --verbosity normal
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Run tests
+        env:
+          CHROMEWEBDRIVER: /usr/local/bin/chromedriver
+        run: dotnet test --verbosity normal
