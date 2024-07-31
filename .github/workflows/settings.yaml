@@ -23,16 +23,20 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Install chrome
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-  
       - name: Install dependencies
         run: dotnet restore
 
       - name: Build
         run: dotnet build --no-restore
+
+      - name: Set up permissions for Selenium Manager
+        run: chmod +x ./SeleniumIDE/bin/Debug/net6.0/selenium-manager/linux/selenium-manager
+
+      - name: Install Chromium and ChromeDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+          sudo apt-get install -y chromium-chromedriver
 
       - name: Run tests
         run: dotnet test --verbosity normal
