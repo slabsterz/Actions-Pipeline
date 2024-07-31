@@ -1,5 +1,12 @@
+# Ignore all .vsidx files
 *.vsidx
-/.vs
-/.bin
-/.obj
-.vs/SeleniumIde/FileContentIndex/8a55d8fb-7860-4e73-b54c-8dbb5477ef29.vsidx
+
+# Ignore the entire .vs directory (for Visual Studio-related files)
+.vs/
+
+# Ignore bin and obj directories (common for .NET projects)
+bin/
+obj/
+
+# Ignore specific file pattern within a subdirectory
+.vs/SeleniumIde/FileContentIndex/*.vsidx
