@@ -1,0 +1,5 @@
+*.vsidx
+/.vs
+/.bin
+/.obj
+.vs/SeleniumIde/FileContentIndex/8a55d8fb-7860-4e73-b54c-8dbb5477ef29.vsidx
